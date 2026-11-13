@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "SF Pro Display", system-ui, -apple-system, sans-serif;
+  --color-primary: #6366f1;
+  --color-primary-dark: #4f46e5;
+  --color-accent: #a855f7;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: #0a0a0f;
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.live-wallpaper {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 40%, #24243e 100%);
+}
+
+.live-wallpaper::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.35) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.3) 0%, transparent 35%),
+    radial-gradient(circle at 40% 80%, rgba(236, 72, 153, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.2) 0%, transparent 35%);
+  animation: aurora 20s ease-in-out infinite alternate;
+}
+
+.live-wallpaper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.4), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.25), transparent),
+    radial-gradient(1px 1px at 230px 80px, rgba(255,255,255,0.4), transparent),
+    radial-gradient(2px 2px at 300px 150px, rgba(255,255,255,0.3), transparent);
+  background-size: 500px 300px;
+  animation: sparkle 8s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes aurora {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate(-5%, 5%) rotate(5deg) scale(1.05); }
+  100% { transform: translate(5%, -3%) rotate(-3deg) scale(1.02); }
+}
+
+@keyframes sparkle {
+  from { transform: translateY(0); }
+  to { transform: translateY(-300px); }
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-strong {
+  background: rgba(15, 15, 25, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.25); }
+
+::selection { background: rgba(99, 102, 241, 0.4); color: white; }
+
+.glow-primary {
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3), 0 0 40px rgba(99, 102, 241, 0.1);
+}
+
+.email-item { transition: all 0.15s ease; }
+.email-item:hover { background: rgba(255, 255, 255, 0.06); }
+.email-item.selected {
+  background: rgba(99, 102, 241, 0.15);
+  border-left: 3px solid #6366f1;
+}
+
+.compose-modal { animation: slideUp 0.25s ease-out; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}

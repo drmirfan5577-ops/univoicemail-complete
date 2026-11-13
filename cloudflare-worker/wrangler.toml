@@ -1,0 +1,8 @@
+name = "uni-email-router"
+main = "email-worker.js"
+compatibility_date = "2024-09-01"
+
+[vars]
+# Set these via `wrangler secret put`
+# UNIVOICE_WEBHOOK_URL = "https://api.uniorbi.com/webhooks/inbound"
+# WORKER_SECRET = "your-strong-secret"
